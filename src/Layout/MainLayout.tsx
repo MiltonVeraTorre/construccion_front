@@ -21,7 +21,7 @@ export default function MainLayout({
         <title>App Construccion</title>
         <meta name="description" content="Admin de gimnasio" />
       </Head>
-      <div className="flex min-h-screen w-full bg-gray-100">
+      <div className="flex min-h-screen w-full bg-gray-50">
         <Sidebar sidebar={sidebar} setSidebar={setSidebar} />
         <div className="w-full ">
           <Navegacion sidebar={sidebar} setSidebar={setSidebar}  />
