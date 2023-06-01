@@ -95,29 +95,29 @@ export default function Sidebar({sidebar, setSidebar}:any) {
             </li>
             <li>
               <Link
-                href="/usuarios"
+                href="/remuneracion"
                 className="relative flex ml-5 items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 onClick={() => setSidebar(false)}
               >
                 <span className="flex justify-center items-center">
-                <i className="fa-solid fa-trophy text-orange-400 text-2xl"></i>
+                <i className="fa-solid fa-piggy-bank text-orange-400 text-2xl"></i>
                 </span>
                 <span className="ml-2 text-2xl tracking-wide truncate">
-                  Logros
+                  Remuneración
                 </span>
               </Link>
             </li>
             <li>
               <Link
-                href="/perfil"
+                href="/recompensas"
                 className="relative flex ml-5 items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 onClick={() => setSidebar(false)}
               >
                 <span className="flex justify-center items-center">
-                <i className="fa-solid fa-user text-orange-400 text-2xl"></i>
+                <i className="fa-solid fa-medal text-orange-400 text-2xl"></i>
                 </span>
                 <span className="ml-2 text-2xl tracking-wide truncate">
-                  Perfil
+                  Recompensas
                 </span>
               </Link>
             </li>
