@@ -64,9 +64,9 @@ export default function Remuneracion() {
                     </div>
                 </div>
 
-                <div id='noticias-main-container' className='w-full px-[40px]'>
+                {/* <div id='noticias-main-container' className='w-full px-[40px]'>
                     <Noticias />
-                </div>
+                </div> */}
 
                 <div id='fechas-main-container' className='w-full px-[40px]'>
 
