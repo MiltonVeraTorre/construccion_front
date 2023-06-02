@@ -79,7 +79,7 @@ export default function Sidebar({sidebar, setSidebar}:any) {
                 </span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href="/usuarios"
                 className="relative flex ml-5 items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
@@ -92,7 +92,7 @@ export default function Sidebar({sidebar, setSidebar}:any) {
                   Premios
                 </span>
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 href="/remuneracion"
