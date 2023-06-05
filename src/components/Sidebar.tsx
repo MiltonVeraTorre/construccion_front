@@ -67,7 +67,7 @@ export default function Sidebar({sidebar, setSidebar}:any) {
             
             <li>
               <Link
-                href="/usuarios"
+                href="/cursos"
                 className="relative flex ml-5 items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 onClick={() => setSidebar(false)}
               >
@@ -79,48 +79,8 @@ export default function Sidebar({sidebar, setSidebar}:any) {
                 </span>
               </Link>
             </li>
-            {/* <li>
-              <Link
-                href="/usuarios"
-                className="relative flex ml-5 items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
-                onClick={() => setSidebar(false)}
-              >
-                <span className="flex justify-center items-center">
-                <i className="fa-solid fa-medal text-orange-400 text-2xl"></i>
-                </span>
-                <span className="ml-2 text-2xl tracking-wide truncate">
-                  Premios
-                </span>
-              </Link>
-            </li> */}
-            <li>
-              <Link
-                href="/remuneracion"
-                className="relative flex ml-5 items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
-                onClick={() => setSidebar(false)}
-              >
-                <span className="flex justify-center items-center">
-                <i className="fa-solid fa-piggy-bank text-orange-400 text-2xl"></i>
-                </span>
-                <span className="ml-2 text-2xl tracking-wide truncate">
-                  Remuneración
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/recompensas"
-                className="relative flex ml-5 items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
-                onClick={() => setSidebar(false)}
-              >
-                <span className="flex justify-center items-center">
-                <i className="fa-solid fa-medal text-orange-400 text-2xl"></i>
-                </span>
-                <span className="ml-2 text-2xl tracking-wide truncate">
-                  Recompensas
-                </span>
-              </Link>
-            </li>
+            
+           
             
           </ul>
         </div>
