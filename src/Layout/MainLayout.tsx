@@ -2,11 +2,13 @@
 
 import Head from "next/head";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { ReactElement } from "react";
 import Sidebar from "@/components/Sidebar";
 import Navegacion from "@/components/Navegacion";
+import useAuth from "@/hooks/useAuth";
+import { useRouter } from "next/router";
 
 export default function MainLayout({
   children,
@@ -14,7 +16,19 @@ export default function MainLayout({
   children: React.ReactNode;
 }): ReactElement {
 
+  const {auth,cargando} = useAuth()
+
+  const router = useRouter()
   const [sidebar, setSidebar] = useState(false)
+
+  useEffect(()=>{
+    if(!auth?._id && !cargando){
+      //router.push("/login")
+    }
+  },[cargando,auth,router])
+
+  if (cargando) return <div>cargando...</div> ;
+
   return (
     <>
       <Head>

@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+
 import MainLayout from '@/Layout/MainLayout'
 import ProgresoUsuario from '@/components/Index_legacy/ProgresoUsuario'
 import UltimosCursos from '@/components/Index_legacy/UltimosCursos'
