@@ -103,7 +103,7 @@ const Admin: React.FC = (props: AdminProps) => {
         Barras de los cursos
       </div>
       <div>
-        Selección de usuarios
+        Menu 
         <UserModify />
       </div>
     </div>
