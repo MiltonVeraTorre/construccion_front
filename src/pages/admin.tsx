@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 
 // RFC to add or remove users
-const UserModify: React.FC = () => {
+const UserModifyMenu: React.FC = () => {
   // Set the state to add or remove the users
   const [mode, setMode] = useState<string>("update");
 
@@ -27,6 +27,7 @@ const UserModify: React.FC = () => {
     setUsernameInputValue(e.target.value);
   };
 
+  // User has clicked the delete mode button
   if (mode === "delete") {
     return (
 
@@ -57,7 +58,7 @@ const UserModify: React.FC = () => {
                 className="focus:outline appearance-none rounded w-full py-2 px-3 text-gray-200 leading-tight bg-[#414250]"
                 id="username"
                 type="text"
-                placeholder="Enter the username to update"
+                placeholder="Enter the user to delete"
               />
 
             </div>
@@ -147,29 +148,142 @@ const UserModify: React.FC = () => {
   )
 }
 
+const CoursesModifyMenu: React.FC = () => {
+  return (
+    <div className="lg:w-1/2 mx-[10px]">
+
+      <div className="bg-[#343541] shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
+        <h3 className='text-center text-gray-200 font-bold mb-[10px]'>Course update menu</h3>
+        <div className="mb-6">
+
+          <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="username">
+            Course id
+          </label>
+          <input
+            className="focus:outline appearance-none rounded w-full py-2 px-3 text-gray-200 leading-tight bg-[#414250]"
+            id="username"
+            type="text"
+            placeholder="Enter the username to update"
+          />
+
+          <label className="block text-gray-300 text-sm font-bold mb-2 mt-3" htmlFor="email">
+            New course name
+          </label>
+          <input
+            className="focus:outline appearance-none rounded w-full py-2 px-3 text-gray-200 leading-tight bg-[#414250]"
+            id="email"
+            type={"email"}
+            placeholder="Enter the username to update"
+          />
+
+        </div>
+
+        <div>
+          <button
+            className="bg-gradient-to-r from-orange-300 to-yellow-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+        <div className='text-gray-300 font-bold mt-[20px]'>
+          Last response from API
+        </div>
+        <div className='bg-[#414250] min-h-[100px] mt-[10px] text-gray-400 p-[6px]'>
+          Waiting for API . . .
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const UpdateUserCourse: React.FC = () => {
+  return (
+    <div className="lg:w-1/2 mx-[10px]">
+
+      <div className="bg-[#343541] shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
+        <h3 className='text-center text-gray-200 font-bold mb-[10px]'>Update user course menu</h3>
+        <div className="mb-6">
+
+          <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="username">
+            User id
+          </label>
+          <input
+            className="focus:outline appearance-none rounded w-full py-2 px-3 text-gray-200 leading-tight bg-[#414250]"
+            id="username"
+            type="text"
+            placeholder="Enter the username to update"
+          />
+
+          <label className="block text-gray-300 text-sm font-bold mb-2 mt-3" htmlFor="email">
+            Course id
+          </label>
+          <input
+            className="focus:outline appearance-none rounded w-full py-2 px-3 text-gray-200 leading-tight bg-[#414250]"
+            id="email"
+            type={"email"}
+            placeholder="Enter the username to update"
+          />
+
+          <label htmlFor='user-courses'></label>
+          <select name="cars" id="cars" className=''>
+            <option value="volvo">Cursado</option>
+            <option value="saab">Cursando</option>
+            <option value="opel">No cursado</option>
+          </select>
+        </div>
+
+        <div>
+          <button
+            className="bg-gradient-to-r from-orange-300 to-yellow-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+        <div className='text-gray-300 font-bold mt-[20px]'>
+          Last response from API
+        </div>
+        <div className='bg-[#414250] min-h-[100px] mt-[10px] text-gray-400 p-[6px]'>
+          Waiting for API . . .
+        </div>
+      </div>
+    </div>
+
+
+
+  )
+}
+
 type AdminProps = {}
 
 const Admin: React.FC = (props: AdminProps) => {
   return (
-    <div className='bg-[#202123] h-screen'>
-      <div>
+    <div className='bg-[#202123] h-full w-screen'>
+      <div className='text-white'>
         Ternium Admin
       </div>
-      <div className='flex w-screen'>
+      <div className='flex'>
+
         <div className='bg-gradient-to-r from-orange-300 to-yellow-300 w-full mx-[10px] rounded h-[80px] my-[10px] md:flex-row md:flex md:justify-around md:items-center'>
           <h3 className='text-center md:text-start mt-[10px] md:mt-0'>Total users</h3>
           <p className='text-center md:text-start'>1</p>
         </div>
         <div className='bg-gradient-to-r from-orange-300 to-yellow-300 w-full mr-[10px] rounded h-[80px] my-[10px] md:flex-row md:flex md:justify-around md:items-center'>
-          <h3 className='text-center md:text-start mt-[10px] md:mt-0'>Total users</h3>
+          <h3 className='text-center md:text-start mt-[10px] md:mt-0'>Total courses</h3>
           <p className='text-center md:text-start'>1</p>
         </div>
-        
-        
+
       </div>
 
       <div>
-        <UserModify />
+        <UserModifyMenu />
+      </div>
+      <div>
+        <CoursesModifyMenu />
+      </div>
+      <div>
+        <UpdateUserCourse />
       </div>
     </div>
   )
