@@ -22,8 +22,8 @@ export default function MainLayout({
   const [sidebar, setSidebar] = useState(false)
 
   useEffect(()=>{
-    if(!auth?._id && !cargando){
-      //router.push("/login")
+    if(!auth && !cargando){
+      router.push("/login")
     }
   },[cargando,auth,router])
 

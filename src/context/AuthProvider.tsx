@@ -1,15 +1,16 @@
 import { useState,useEffect,createContext } from "react";
 import clienteAxios from "@/config/clienteAxios";
 import Swal from "sweetalert2";
+import { axiosConfig } from "@/config/axiosConfig";
 
 interface AuthInterface{
-    auth:any,
+    auth:Usuario | null,
     setAuth:any,
     cargando:boolean
 }
 
 const AuthInterface = {
-    auth:{},
+    auth:null,
     setAuth:()=>{},
     cargando:true
 }
@@ -18,7 +19,7 @@ const AuthContext = createContext<AuthInterface>(AuthInterface)
 
 const AuthProvider = ({children}:any)=>{
 
-    const [auth, setAuth] = useState({})
+    const [auth, setAuth] = useState<Usuario | null>(null)
     const [cargando, setCargando] = useState(true)
     
 
@@ -29,16 +30,17 @@ const AuthProvider = ({children}:any)=>{
                 setCargando(false)
                 return
             }
-            const config = {
-                headers:{
-                    "Content-Type":"application/json"
-                }
-            }
+
+            const config = axiosConfig()
+            if(!config) return
             try {
-                const {data} = await clienteAxios.post("/User/GetData",{iIdUser},config)
-                setAuth(data)
+                const {data}:{data:Usuario[]} = await clienteAxios.post("/User/GetData",{iIdUser:+iIdUser},config)
+
+                if(data[0].iIdUser){
+                    setAuth(data[0])
+                }
             } catch (error) {
-                setAuth({})
+                setAuth(null)
             } finally{
                 setCargando(false)
             }

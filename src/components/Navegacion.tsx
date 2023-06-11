@@ -1,6 +1,9 @@
+import useAuth from "@/hooks/useAuth"
 import { useState } from "react"
 
 export default function Navegacion({sidebar, setSidebar}:any) {
+
+  const {auth} = useAuth()
 
   return (
     <div className='w-full bg-white py-5 shadow flex justify-between'>
@@ -12,7 +15,9 @@ export default function Navegacion({sidebar, setSidebar}:any) {
             
         </button>
         <div className='mr-6 flex justify-center items-center '>
-          <h4 className='md:text-lg'>Bienvenido <span className='font-bold text-lg md:text-xl text-slate-700'>Pedro</span> </h4>
+          <h4 className='md:text-lg'>Bienvenido <span className='font-bold text-lg md:text-xl text-slate-700 capitalize'>
+            {auth?.sUser.split(" ")[0]}
+            </span> </h4>
           <button
             type='button'
 

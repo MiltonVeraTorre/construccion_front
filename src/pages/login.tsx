@@ -24,10 +24,19 @@ export default function login() {
           title: "Todos los campos son obligatorios",
         })
       }
-      const {data} = await clienteAxios.post("/Login/UserLogin", { sUser:correo, sPassword:password })
+      const {data}:{data:Usuario} = await clienteAxios.post("/Login/UserLogin", { sUser:correo, sPassword:password })
       
-      router.push("/")
+      if(!data.iIdUser){
+        Swal.fire({
+          icon: "error",
+          title: "Usuario o contraseña incorrectos",
+        })
+        return
+      }
       setAuth(data)
+      localStorage.setItem("idUsuario",data.iIdUser.toString())
+      localStorage.setItem("token",data.sJwtToken)
+      router.push("/")
 
     } catch (error) {
       Swal.fire({
