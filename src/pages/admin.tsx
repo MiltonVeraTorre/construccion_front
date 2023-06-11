@@ -39,14 +39,14 @@ const UserModifyMenu: React.FC = () => {
       //         />
 
       <div id='user-delete-container' className='flex flex-col'>
-        <div className='lg:w-1/2'>
+        <div className=''>
           <div className='flex justify-center'>
             <button className='bg-gray-500 rounded-t  mr-2 w-[100px]' onClick={() => setMode("update")}>Update user</button>
             <button className='bg-[#343541] text-gray-300 rounded-t mr-2 w-[100px]'>Delete user</button>
           </div>
         </div>
 
-        <div className="lg:w-1/2 mx-[10px]">
+        <div className="mx-[10px]">
 
           <div className="bg-[#343541] shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
             <div className="mb-6">
@@ -84,14 +84,14 @@ const UserModifyMenu: React.FC = () => {
   }
   return (
     <div id='user-update-container' className='flex flex-col'>
-      <div className='lg:w-1/2'>
+      <div className=''>
         <div className='flex justify-center'>
           <button className='bg-[#343541] rounded-t text-gray-300 mr-2 w-[100px]'>Update user</button>
           <button className='bg-gray-500 rounded-t mr-2 w-[100px]' onClick={() => setMode("delete")}>Delete user</button>
         </div>
       </div>
 
-      <div className="lg:w-1/2 mx-[10px]">
+      <div className=" mx-[10px]">
 
         <div className="bg-[#343541] shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
           <div className="mb-6">
@@ -150,7 +150,7 @@ const UserModifyMenu: React.FC = () => {
 
 const CoursesModifyMenu: React.FC = () => {
   return (
-    <div className="lg:w-1/2 mx-[10px]">
+    <div className=" mx-[10px]">
 
       <div className="bg-[#343541] shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
         <h3 className='text-center text-gray-200 font-bold mb-[10px]'>Course update menu</h3>
@@ -199,7 +199,7 @@ const CoursesModifyMenu: React.FC = () => {
 
 const UpdateUserCourse: React.FC = () => {
   return (
-    <div className="lg:w-1/2 mx-[10px]">
+    <div className=" mx-[10px]">
 
       <div className="bg-[#343541] shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
         <h3 className='text-center text-gray-200 font-bold mb-[10px]'>Update user course menu</h3>
@@ -225,12 +225,15 @@ const UpdateUserCourse: React.FC = () => {
             placeholder="Enter the username to update"
           />
 
-          <label htmlFor='user-courses'></label>
-          <select name="cars" id="cars" className=''>
-            <option value="volvo">Cursado</option>
-            <option value="saab">Cursando</option>
-            <option value="opel">No cursado</option>
-          </select>
+          <div className='mt-[10px]'>
+            <label htmlFor='user-courses' className='text-gray-200'>Status </label>
+            <select name="cars" id="cars" className='rounded bg-[#414250] text-gray-200'>
+              <option value="cursado" className='text-gray-200'>Cursado</option>
+              <option value="cursando" className='text-gray-200'>Cursando</option>
+              <option value="no_cursado" className='text-gray-200'>No cursado</option>
+            </select>
+          </div>
+
         </div>
 
         <div>
@@ -259,8 +262,8 @@ type AdminProps = {}
 
 const Admin: React.FC = (props: AdminProps) => {
   return (
-    <div className='bg-[#202123] h-full w-screen'>
-      <div className='text-white'>
+    <div className='bg-[#202123] h-full w-screen overflow-x-hidden'>
+      <div className='text-white text-center font-bold text-[26px]'>
         Ternium Admin
       </div>
       <div className='flex'>
@@ -276,15 +279,16 @@ const Admin: React.FC = (props: AdminProps) => {
 
       </div>
 
-      <div>
-        <UserModifyMenu />
+      <div className='lg:flex lg:flex-row'>
+        <div className='lg:w-1/2'>
+          <UserModifyMenu />
+        </div>
+        <div className='flex flex-col lg:w-1/2'>
+          <CoursesModifyMenu />
+          <UpdateUserCourse />
+        </div>
       </div>
-      <div>
-        <CoursesModifyMenu />
-      </div>
-      <div>
-        <UpdateUserCourse />
-      </div>
+
     </div>
   )
 }
