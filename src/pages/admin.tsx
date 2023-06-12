@@ -1,5 +1,6 @@
 import CoursesTable from "@/components/admin/CoursesTable";
 import UpdateUserCourse from "@/components/admin/UpdateUserCourse";
+import UserCourseStatus from "@/components/admin/UserCourseStatus";
 import UserTable from "@/components/admin/UserTable";
 import { axiosConfig } from "@/config/axiosConfig";
 import clienteAxios from "@/config/clienteAxios";
@@ -21,14 +22,14 @@ const Admin: React.FC = (props: AdminProps) => {
     const cargarDatos = async () => {
       try {
         const config = axiosConfig()
-        if(!config) return
+        if (!config) return
 
         const [
-          {data: usuariosData},
-          {data: cursosData}
-        ] =await Promise.all([
-          clienteAxios.post("/User/GetData",{},config),
-          clienteAxios.post("/Course/GetData",{},config)
+          { data: usuariosData },
+          { data: cursosData }
+        ] = await Promise.all([
+          clienteAxios.post("/User/GetData", {}, config),
+          clienteAxios.post("/Course/GetData", {}, config)
         ])
 
         setUsuarios(usuariosData)
@@ -43,22 +44,23 @@ const Admin: React.FC = (props: AdminProps) => {
 
     }
     cargarDatos()
-  },[])
+  }, [])
 
   const handleStatus = async () => {
     try {
       const config = axiosConfig()
-      if(!config) return
+      if (!config) return
 
-      await clienteAxios.post("/Course/AddTraineeToCourse",{
+      await clienteAxios.post("/Course/AddTraineeToCourse", {
         iIdCourse: idCurso,
         iIdUser: idUsuario,
-      },config)
+      }, config)
 
       Swal.fire({
         icon: 'success',
         title: 'Status actualizado correctamente',
       })
+
       setIdUsuario("")
       setidCurso("")
       setStatus("")
@@ -66,6 +68,42 @@ const Admin: React.FC = (props: AdminProps) => {
       Swal.fire({
         icon: 'error',
         title: 'Hubo un error al actualizar el status',
+      })
+    }
+  }
+
+  const handleAddUser = async (userId: string) => {
+    try {
+      const config = axiosConfig();
+      // No conection to axios, stop process
+      if (!confirm) return
+
+      // Need the add user API endpoint
+      await clienteAxios.post("/", {
+        iIdUser: userId
+      })
+    } catch(error: any) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Hubo un error al agregar un usuario',
+      })
+    }
+  }
+
+  const handleRemoveUser = async (userId: string) => {
+    try {
+      const config = axiosConfig();
+      // No conection to axios, stop process
+      if (!confirm) return
+
+      // Need the add user API endpoint
+      await clienteAxios.post("/", {
+        iIdUser: userId
+      })
+    } catch(error: any) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Hubo un error al remover un usuario',
       })
     }
   }
@@ -97,22 +135,30 @@ const Admin: React.FC = (props: AdminProps) => {
       </div>
 
       <div className="grid grid-cols-1 place-items-center gap-4 lg:grid-cols-2">
-        <UserTable 
+        <UserTable
           usuarios={usuarios}
           setIdUsuario={setIdUsuario}
-  
+
         />
         <CoursesTable
           cursos={cursos}
           setidCurso={setidCurso}
         />
+        {/* Component to add or remove a user from the course */}
         <UpdateUserCourse
+          idUsuario={idUsuario}
+          idCurso={idCurso}
+          handleAddUser={handleAddUser}
+          handleRemoveUser={handleRemoveUser}
+        />
+
+        {/* Component to update the status of a user in a selected course */}
+        <UserCourseStatus
           idUsuario={idUsuario}
           idCurso={idCurso}
           status={status}
           setStatus={setStatus}
           handleStatus={handleStatus}
-          
         />
       </div>
     </div>
