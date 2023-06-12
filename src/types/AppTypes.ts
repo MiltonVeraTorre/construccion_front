@@ -6,6 +6,16 @@ interface Usuario{
     bSuperUser: boolean
     sJwtToken: string
 }
+interface Curso{
+    iIdCourse: number;
+    sCourseName: string;
+    dCreated: string;
+    iIdCourseType: number;
+    iIdFraming: number;
+    sCourseType: string;
+    sCourseFraming: string;
+    bActive: boolean;
+}
 interface UsuarioData{
     iIdCet: number;
     sName: string;

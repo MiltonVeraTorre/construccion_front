@@ -10,7 +10,6 @@ import clienteAxios from "@/config/clienteAxios";
 import useAuth from "@/hooks/useAuth";
 const { Option } = Select;
 
-
 export default function index() {
   const { auth } = useAuth();
 
@@ -30,13 +29,20 @@ export default function index() {
         const config = axiosConfig();
         if (!config) return;
 
-        const [
-          { data: userData }, 
-          { data: interesesData }
-        ] = await Promise.all([
-          clienteAxios.post("/User/GetUserInfoData", { iIdUser: auth?.iIdUser }, config),
-          clienteAxios.post("/UserInterest/GetData", { iIdUser: auth?.iIdUser }, config)
-        ]);
+        const [{ data: userData }, { data: interesesData }] = await Promise.all(
+          [
+            clienteAxios.post(
+              "/User/GetUserInfoData",
+              { iIdUser: auth?.iIdUser },
+              config
+            ),
+            clienteAxios.post(
+              "/UserInterest/GetData",
+              { iIdUser: auth?.iIdUser },
+              config
+            ),
+          ]
+        );
 
         setNombre(userData[0].sName);
         setPuesto(userData[0].sBusinessUnit);
@@ -45,9 +51,11 @@ export default function index() {
         setEncuadre(userData[0].sEncuadreActual);
         setDireccion(userData[0].sDivision);
 
-        setIntereses(interesesData.map((interes:Interes)=>(
-          interes.iIdInterest.toString()
-          )))
+        setIntereses(
+          interesesData.map((interes: Interes) =>
+            interes.iIdInterest.toString()
+          )
+        );
       } catch (error) {
         Swal.fire({
           icon: "error",
@@ -55,19 +63,35 @@ export default function index() {
         });
       }
     };
-    if(auth){
+    if (auth) {
       cargarDatos();
     }
   }, [auth]);
 
-  const handleSelect = (value: string[]) => {
+  const handleSelect = async (value: string[]) => {
     setIntereses(value);
     const config = axiosConfig();
     if (!config) return;
-    clienteAxios.delete(
-      "/UserInterest/DeleteData",
-      {})
-  }
+
+    await clienteAxios.post(
+      "/UserInterest/DeleteUserInterests",
+      {
+        iIdUser: auth?.iIdUser,
+      },
+      config
+    );
+
+    for(const interes of value){
+      clienteAxios.post(
+        "/UserInterest/AddInterestToUser",
+        {
+          iIdUser: auth?.iIdUser,
+          iIdInterest: interes,
+        },
+        config
+      );
+    }
+  };
 
   return (
     <MainLayout>
@@ -115,7 +139,9 @@ export default function index() {
               onChange={(value) => handleSelect(value)}
             >
               {OPCIONES_INTERESES.map((interes) => (
-                <Option key={Math.random()} value={interes.value}>{interes.label}</Option>
+                <Option key={Math.random()} value={interes.value}>
+                  {interes.label}
+                </Option>
               ))}
             </Select>
           </div>
