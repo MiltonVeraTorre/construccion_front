@@ -149,7 +149,7 @@ const Admin: React.FC = (props: AdminProps) => {
           idCurso={idCurso}
           status={status}
           setStatus={setStatus}
-          handleStatus={handleStatus}
+          // handleStatus={handleStatus}
         />
       </div>
     </div>

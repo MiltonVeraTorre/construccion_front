@@ -11,11 +11,12 @@ type UserCourseStatusProps = {
     idUsuario: string
     idCurso: string
     status: string
-    setStatus: React.Dispatch<React.SetStateAction<string>> // Return a string, to modify the state in setTatus(admin.tsx)
-    handleStatus: () => void // Function to pass the status to admin.tsx
+    // setStatus: React.Dispatch<React.SetStateAction<string>> // Return a string, to modify the state in setTatus(admin.tsx)
+    setStatus: (status: string) => void
+    // handleStatus: () => void // Function to pass the status to admin.tsx
 }
 
-const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso, status, setStatus, handleStatus }) => {
+const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso, status, setStatus }) => {
     return (
         <div className=" mx-[10px] w-5/6 lg:col-span-2 lg:w-2/3">
             <div className="bg-[#343541] shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
@@ -78,7 +79,7 @@ const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso,
                     <button
                         className="bg-orange-100 text-orange-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="button"
-                        onClick={handleStatus}
+                        // onClick={handleStatus}
                     >
                         Modificar
                     </button>
