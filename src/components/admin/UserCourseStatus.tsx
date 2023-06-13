@@ -66,10 +66,10 @@ const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso,
                             {/* <option value="" className="text-gray-200">
                 -- Seleccionar --
               </option> */}
-                            <option value="cursado" className="text-gray-200">
+                            <option value="true" className="text-gray-200">
                                 Cursado
                             </option>
-                            <option value="no_cursado" className="text-gray-200">
+                            <option value="false" className="text-gray-200">
                                 No cursado
                             </option>
                         </select>

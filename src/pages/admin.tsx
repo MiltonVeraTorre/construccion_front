@@ -46,7 +46,7 @@ const Admin: React.FC = (props: AdminProps) => {
     cargarDatos()
   }, [])
 
-  const handleStatus = async () => {
+  const handleAddUserCourse = async () => {
     try {
       const config = axiosConfig()
       if (!config) return
@@ -58,30 +58,32 @@ const Admin: React.FC = (props: AdminProps) => {
 
       Swal.fire({
         icon: 'success',
-        title: 'Status actualizado correctamente',
+        title: 'Usuario agregado correctamente',
       })
 
       setIdUsuario("")
       setidCurso("")
-      setStatus("")
+      // setStatus("")
     } catch (error) {
       Swal.fire({
         icon: 'error',
-        title: 'Hubo un error al actualizar el status',
+        title: 'Hubo un error al agregar el usuario al curso',
       })
     }
   }
 
   // ! Lacks functionality
-  const handleAddUserCourse = async (userId: string, courseId: string) => {
+  const handleStatus = async () => {
     try {
       const config = axiosConfig();
       // No conection to axios, stop process
       if (!confirm) return
 
       // Need the add user API endpoint
-      await clienteAxios.post("/", {
-        iIdUser: userId
+      await clienteAxios.post("/CourseAttendance/InsertOrUpdate", {
+        iIdCourse: idCurso,
+        iIdUser: idUsuario,
+        bAttendanceStatus: status,
       })
     } catch(error: any) {
       Swal.fire({
