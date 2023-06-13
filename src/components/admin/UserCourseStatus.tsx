@@ -1,11 +1,13 @@
 //CourseAttendance/InsertOrUpdate
 // {
 //     "iIdCourseAttendance": null,
-//     "iIdCourse": 9,
-//     "iIdUser": 3,
-//     "bAttendanceStatus": true,
+//     "iIdCourse": 9, // cambiar
+//     "iIdUser": 3, // cambiar
+//     "bAttendanceStatus": true, // cambiar
 //     "sEncuadreActual": ""
 //   }
+
+import { useState } from "react"
 
 type UserCourseStatusProps = {
     idUsuario: string
@@ -13,10 +15,10 @@ type UserCourseStatusProps = {
     status: string
     // setStatus: React.Dispatch<React.SetStateAction<string>> // Return a string, to modify the state in setTatus(admin.tsx)
     setStatus: (status: string) => void
-    // handleStatus: () => void // Function to pass the status to admin.tsx
+    handleStatus: (idUsuario: string, idCurso: string, status: string) => void // Function to pass the status to admin.tsx
 }
 
-const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso, status, setStatus }) => {
+const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso, status, setStatus, handleStatus }) => {
     return (
         <div className=" mx-[10px] w-5/6 lg:col-span-2 lg:w-2/3">
             <div className="bg-[#343541] shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
@@ -61,12 +63,12 @@ const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso,
                             id="status"
                             className="rounded-md bg-[#414250] text-gray-200 p-3"
                             value={status}
-                            onChange={(e) => setStatus(e.target.value)}
+                            onChange={(e) => {setStatus(e.target.value) }}
                         >
 
-                            {/* <option value="" className="text-gray-200">
-                -- Seleccionar --
-              </option> */}
+                            <option value="" className="text-gray-200">
+                                -- Seleccionar --
+                            </option>
                             <option value="true" className="text-gray-200">
                                 Cursado
                             </option>
@@ -75,15 +77,16 @@ const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso,
                             </option>
                         </select>
                     </div>
-                <div className="">
-                    <button
-                        className="bg-orange-100 text-orange-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button"
-                        // onClick={handleStatus}
-                    >
-                        Modificar
-                    </button>
-                </div>
+                    <div className="">
+                        <button
+                            className="bg-orange-100 text-orange-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="button"
+                            onClick={() => handleStatus(idUsuario, idCurso, status)}
+                        >
+                            Modificar
+                        </button>
+                    </div>
+                    {status.length}
                 </div>
 
             </div>

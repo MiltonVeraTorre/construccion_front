@@ -1,8 +1,8 @@
 //Course/AddTraineeToCourse 
 // {
 //   "iIdCourseTrainees": null,
-//   "iIdCourse": 1,
-//   "iIdUser": 2
+//   "iIdCourse": 1, // cambiar
+//   "iIdUser": 2 // cambiar
 // }
 
 interface UpdateUserCourseProps {

@@ -74,6 +74,8 @@ const Admin: React.FC = (props: AdminProps) => {
 
   // ! Lacks functionality
   const handleStatus = async () => {
+    
+    console.log("Status: ", (status === "true"))
     try {
       const config = axiosConfig();
       // No conection to axios, stop process
@@ -83,7 +85,7 @@ const Admin: React.FC = (props: AdminProps) => {
       await clienteAxios.post("/CourseAttendance/InsertOrUpdate", {
         iIdCourse: idCurso,
         iIdUser: idUsuario,
-        bAttendanceStatus: status,
+        bAttendanceStatus: (status === "true"),
       })
 
       Swal.fire({
@@ -149,7 +151,7 @@ const Admin: React.FC = (props: AdminProps) => {
           idCurso={idCurso}
           status={status}
           setStatus={setStatus}
-          // handleStatus={handleStatus}
+          handleStatus={handleStatus}
         />
       </div>
     </div>
