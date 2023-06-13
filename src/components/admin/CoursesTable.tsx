@@ -3,12 +3,12 @@ import DataTable from "react-data-table-component";
 
 import { TableStyles } from "react-data-table-component";
 
-interface CoursesProps{
+interface CoursesProps {
   cursos: Curso[]
   setidCurso: (id: string) => void
 }
 
-const CoursesTable: React.FC<CoursesProps> = ({cursos,setidCurso}:CoursesProps) => {
+const CoursesTable: React.FC<CoursesProps> = ({ cursos, setidCurso }: CoursesProps) => {
   const [cliente, setCliente] = useState(false);
 
   // Definir los datos que se mostrarán en la tabla
