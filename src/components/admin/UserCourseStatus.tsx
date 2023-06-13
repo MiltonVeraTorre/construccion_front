@@ -1,3 +1,12 @@
+//CourseAttendance/InsertOrUpdate
+// {
+//     "iIdCourseAttendance": null,
+//     "iIdCourse": 9,
+//     "iIdUser": 3,
+//     "bAttendanceStatus": true,
+//     "sEncuadreActual": ""
+//   }
+
 type UserCourseStatusProps = {
     idUsuario: string
     idCurso: string

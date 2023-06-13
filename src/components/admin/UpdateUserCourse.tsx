@@ -1,3 +1,10 @@
+//Course/AddTraineeToCourse 
+// {
+//   "iIdCourseTrainees": null,
+//   "iIdCourse": 1,
+//   "iIdUser": 2
+// }
+
 interface UpdateUserCourseProps {
   idUsuario: string
   idCurso: string

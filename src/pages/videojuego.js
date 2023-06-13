@@ -1,3 +1,11 @@
+//Game/GetData
+// {
+//   "iIdGameStats": 0,
+//   "iIdUser": 1,
+//   "iMaxPuntaje": 0,
+//   "iVidas": 0
+// }
+
 import React from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 
