@@ -85,6 +85,13 @@ const Admin: React.FC = (props: AdminProps) => {
         iIdUser: idUsuario,
         bAttendanceStatus: status,
       })
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Usuario agregado correctamente',
+      })
+      
+      setStatus("")
     } catch(error: any) {
       Swal.fire({
         icon: 'error',

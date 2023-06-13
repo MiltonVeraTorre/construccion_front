@@ -51,6 +51,7 @@ const UserTable: React.FC<UserProps> = ({ usuarios, setIdUsuario }: UserProps) =
   // Manejar el click del botón
   const handleButtonClick = (id: string) => {
     alert(`Viewing details for user with ID: ${id}`);
+    
     // Eliminar usuario
     // const handleDelete = async () => {
     //   try {
