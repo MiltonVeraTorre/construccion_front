@@ -11,7 +11,7 @@ const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso,
         <div className=" mx-[10px] w-5/6 lg:col-span-2 lg:w-2/3">
             <div className="bg-[#343541] shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
                 <h3 className="text-center text-gray-200 font-bold mb-[10px]">
-                    Agregar Usuario a Curso
+                    Modificar Status de Usuario en Curso
                 </h3>
                 <div className="mb-6 flex items-center gap-6 flex-wrap lg:flex-nowrap">
                     <label
@@ -65,9 +65,7 @@ const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso,
                             </option>
                         </select>
                     </div>
-                </div>
-
-                <div className="w-full grid place-items-center">
+                <div className="">
                     <button
                         className="bg-orange-100 text-orange-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="button"
@@ -76,6 +74,8 @@ const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso,
                         Modificar
                     </button>
                 </div>
+                </div>
+
             </div>
         </div>
     )

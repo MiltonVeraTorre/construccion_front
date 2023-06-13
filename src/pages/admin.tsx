@@ -72,7 +72,8 @@ const Admin: React.FC = (props: AdminProps) => {
     }
   }
 
-  const handleAddUser = async (userId: string) => {
+  // ! Lacks functionality
+  const handleAddUserCourse = async (userId: string, courseId: string) => {
     try {
       const config = axiosConfig();
       // No conection to axios, stop process
@@ -86,24 +87,6 @@ const Admin: React.FC = (props: AdminProps) => {
       Swal.fire({
         icon: 'error',
         title: 'Hubo un error al agregar un usuario',
-      })
-    }
-  }
-
-  const handleRemoveUser = async (userId: string) => {
-    try {
-      const config = axiosConfig();
-      // No conection to axios, stop process
-      if (!confirm) return
-
-      // Need the add user API endpoint
-      await clienteAxios.post("/", {
-        iIdUser: userId
-      })
-    } catch(error: any) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Hubo un error al remover un usuario',
       })
     }
   }
@@ -148,8 +131,7 @@ const Admin: React.FC = (props: AdminProps) => {
         <UpdateUserCourse
           idUsuario={idUsuario}
           idCurso={idCurso}
-          handleAddUser={handleAddUser}
-          handleRemoveUser={handleRemoveUser}
+          handleAddUserCourse={handleAddUserCourse}
         />
 
         {/* Component to update the status of a user in a selected course */}
