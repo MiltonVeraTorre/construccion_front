@@ -5,6 +5,7 @@ import { TableStyles } from "react-data-table-component";
 
 import clienteAxios from "@/config/clienteAxios";
 import { axiosConfig } from "@/config/axiosConfig";
+import Swal from "sweetalert2";
 
 
 interface UserProps {
@@ -49,31 +50,31 @@ const UserTable: React.FC<UserProps> = ({ usuarios, setIdUsuario }: UserProps) =
   ];
 
   // Manejar el click del botón
-  const handleButtonClick = (id: string) => {
-    alert(`Viewing details for user with ID: ${id}`);
+  const handleButtonClick = (userId: string) => {
+    alert(`Viewing details for user with ID: ${userId}`);
     
     // Eliminar usuario
-    // const handleDelete = async () => {
-    //   try {
-    //     const config = axiosConfig();
-    //     // No conection to axios, stop process
-    //     if (!confirm) return
+    const handleDelete = async () => {
+      try {
+        const config = axiosConfig();
+        // No conection to axios, stop process
+        if (!confirm) return
 
-    //     // Need the add user API endpoint
-    //     await clienteAxios.post("/User/Delete", {
-    //       iIdCourse: idCurso,
-    //       iIdUser: idUsuario,
-    //       bAttendanceStatus: status,
-    //     })
-    //   } catch (error: any) {
-    //     Swal.fire({
-    //       icon: 'error',
-    //       title: 'Hubo un error al agregar un usuario',
-    //     })
-    //   }
-    // }
-    // handleDelete()
+        // Need the add user API endpoint
+        await clienteAxios.post("/User/Delete", {
+          iIdUser: userId,
+        })
+      } catch (error: any) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Hubo un error al agregar un usuario',
+        })
+      }
+    }
+    handleDelete()
   };
+
+  
 
   const customStyles: TableStyles = {
     header: {

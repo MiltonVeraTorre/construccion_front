@@ -72,7 +72,6 @@ const Admin: React.FC = (props: AdminProps) => {
     }
   }
 
-  // ! Lacks functionality
   const handleStatus = async () => {
     
     console.log("Status: ", (status === "true"))
