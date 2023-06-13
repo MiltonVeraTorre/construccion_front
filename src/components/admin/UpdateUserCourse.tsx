@@ -9,7 +9,6 @@ interface UpdateUserCourseProps {
   idUsuario: string
   idCurso: string
   handleAddUserCourse: (userId: string, courseId: string) => void // Pass the course and user data to add (Admin.tsx)
-  // handleRemoveUser: (userId: string, courseId: string) => void // Pass the course and user data to remove (Admin.tsx)
 }
 
 const UpdateUserCourse: React.FC<UpdateUserCourseProps> = ({ idUsuario, idCurso, handleAddUserCourse }) => {

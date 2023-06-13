@@ -9,7 +9,7 @@ interface CoursesProps {
 }
 
 const CoursesTable: React.FC<CoursesProps> = ({ cursos, setidCurso }: CoursesProps) => {
-  const [cliente, setCliente] = useState(false);
+  const [cliente, setCliente] = useState(false); //idk
 
   // Definir los datos que se mostrarán en la tabla
   const data = cursos.map((curso) => {
@@ -29,6 +29,7 @@ const CoursesTable: React.FC<CoursesProps> = ({ cursos, setidCurso }: CoursesPro
         <div className="grid grid-cols-2 gap-3">
           <button
             className=" bg-gradient-to-r from-orange-100 to-yellow-100 text-yellow-600 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            // Al hacer click, se cambia el estado de idCurso (Admin.tsx)
             onClick={() => setidCurso(row.id)}
           >
             Seleccionar
