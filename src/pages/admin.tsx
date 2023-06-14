@@ -1,4 +1,5 @@
 import CoursesTable from "@/components/admin/CoursesTable";
+import ModalEditarUsuario from "@/components/admin/ModalEditarUsuario";
 import ModalVerCursos from "@/components/admin/ModalVerCursos";
 import UpdateUserCourse from "@/components/admin/UpdateUserCourse";
 import UserCourseStatus from "@/components/admin/UserCourseStatus";
@@ -25,8 +26,13 @@ const Admin: React.FC = (props: AdminProps) => {
   const [status, setStatus] = useState("")
 
   const [modalVerCursos, setModalVerCursos] = useState(false)
+  const [modalEditarUsuario, setModalEditarUsuario] = useState(false)
   const handleModalVerCursos = () => {
     setModalVerCursos(!modalVerCursos)
+  }
+
+  const handleModalEditarUsuario = () => {
+    setModalEditarUsuario(!modalEditarUsuario)
   }
 
   useEffect(() => {
@@ -158,6 +164,7 @@ const Admin: React.FC = (props: AdminProps) => {
           usuarios={usuarios}
           setIdUsuario={setIdUsuario}
           handleModalVerCursos={handleModalVerCursos}
+          handleModalEditarUsuario={handleModalEditarUsuario}
 
         />
         <CoursesTable
@@ -182,6 +189,11 @@ const Admin: React.FC = (props: AdminProps) => {
         <ModalVerCursos 
           modalVerCursos={modalVerCursos}
           handleModalVerCursos={handleModalVerCursos}
+          idUsuario={idUsuario}
+        />
+        <ModalEditarUsuario 
+          modalEditarUsuario={modalEditarUsuario}
+          handleModalEditarUsuario={handleModalEditarUsuario}
           idUsuario={idUsuario}
         />
       </div>

@@ -12,9 +12,10 @@ interface UserProps {
   usuarios: Usuario[]
   setIdUsuario: (id: string) => void
   handleModalVerCursos: () => void
+  handleModalEditarUsuario: () => void
 }
 
-const UserTable: React.FC<UserProps> = ({ usuarios, setIdUsuario,handleModalVerCursos }: UserProps) => {
+const UserTable: React.FC<UserProps> = ({ usuarios, setIdUsuario,handleModalVerCursos,handleModalEditarUsuario }: UserProps) => {
   const [cliente, setCliente] = useState(false);
 
   // Definir los datos que se mostrarán en la tabla
@@ -50,8 +51,11 @@ const UserTable: React.FC<UserProps> = ({ usuarios, setIdUsuario,handleModalVerC
           >
           </button>
           <button
-            className="fa-solid fa-trash text-yellow-400  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            onClick={() => handleButtonClick(row.id)}
+            className="fa-solid fa-pencil text-yellow-400  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={() => {
+              setIdUsuario(row.id)
+              handleModalEditarUsuario()
+            }}
           ></button>
         </div>
       ),

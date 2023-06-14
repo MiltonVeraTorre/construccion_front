@@ -128,6 +128,7 @@ const ModalVerCursos = ({
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-5xl lg:mx-auto gap-4 place-items-center mx-4">
                     {cursos.map((curso) => (
                       <Curso
+                        key={Math.random() * 1000}
                         status={curso.attendanceStatus}
                         nombre={curso.courseName}
                       />
