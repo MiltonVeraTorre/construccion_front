@@ -46,11 +46,11 @@ interface CursoProps {
 function Curso({ color,status }: CursoProps) {
   return (
     <div className={`w-full bg-gray-100 pb-4 rounded-md ${color}`}>
-      <img
-        className="w-full rounded-lg object-cover object-center "
-        src="https://img-c.udemycdn.com/course/240x135/3809174_9a5b_2.jpg"
-        alt="Curso"
-      />
+
+      <div className="w-full grid place-items-center h-24 bg-orange-100 text-orange-500 rounded-md text-5xl">
+      <i className="fa-solid fa-chalkboard-user"></i>
+      </div>
+      
 
       <div className="px-1 py-2">
         <p className="text-center font-bold">
