@@ -14,8 +14,8 @@ type UserCourseStatusProps = {
     idCurso: string
     status: string
     // setStatus: React.Dispatch<React.SetStateAction<string>> // Return a string, to modify the state in setTatus(admin.tsx)
-    setStatus: (status: string) => void
-    handleStatus: (idUsuario: string, idCurso: string, status: string) => void // Function to pass the status to admin.tsx
+    setStatus: (status: string) => void // Funcion to change the status state in admin.tsx
+    handleStatus: (idUsuario: string, idCurso: string, status: string) => void // Function to handle status change in admin.tsx
 }
 
 const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso, status, setStatus, handleStatus }) => {
@@ -56,14 +56,14 @@ const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso,
                         value={idCurso}
 
                     />
-
+                    {/* Se necesita cambiar forzosamente de opcion para que se actualice el status */}
                     <div className="mt-[10px] grid place-items-center w-full">
                         <select
                             name="status"
                             id="status"
                             className="rounded-md bg-[#414250] text-gray-200 p-3"
                             value={status}
-                            onChange={(e) => {setStatus(e.target.value) }}
+                            onChange={(e) => { setStatus(e.target.value) }}
                         >
 
                             <option value="" className="text-gray-200">

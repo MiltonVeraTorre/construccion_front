@@ -11,11 +11,16 @@ type AdminProps = {};
 
 const Admin: React.FC = (props: AdminProps) => {
 
+  // Lista total de usuarios
   const [usuarios, setUsuarios] = useState<Usuario[]>([])
+  // Lista total de Cursos
   const [cursos, setCursos] = useState<Curso[]>([])
 
+  //Currently selected User ID
   const [idUsuario, setIdUsuario] = useState("")
+  //Currently selected course id
   const [idCurso, setidCurso] = useState("")
+  //Currently selected status (user-course)
   const [status, setStatus] = useState("")
 
   useEffect(() => {
@@ -46,11 +51,13 @@ const Admin: React.FC = (props: AdminProps) => {
     cargarDatos()
   }, [])
 
+  // Funcion para manejar la API y agregar un curso a un usuario
   const handleAddUserCourse = async () => {
     try {
       const config = axiosConfig()
       if (!config) return
 
+      // Post to add the trainee to the course
       await clienteAxios.post("/Course/AddTraineeToCourse", {
         iIdCourse: idCurso,
         iIdUser: idUsuario,
@@ -61,9 +68,9 @@ const Admin: React.FC = (props: AdminProps) => {
         title: 'Usuario agregado correctamente',
       })
 
+      // Reset
       setIdUsuario("")
       setidCurso("")
-      // setStatus("")
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -72,15 +79,18 @@ const Admin: React.FC = (props: AdminProps) => {
     }
   }
 
+  // Funcion para manejar la API y cambiar el status de un usuario en relación al curso
+  // True (Completado) - False (No Completado)
+  // Es necesario cambiar forzosamente el status para que no sea vacío
   const handleStatus = async () => {
-    
+    // Revisar status actual
     console.log("Status: ", (status === "true"))
     try {
       const config = axiosConfig();
       // No conection to axios, stop process
       if (!confirm) return
 
-      // Need the add user API endpoint
+      // Cambiar el status del curso en relacion al usuario
       await clienteAxios.post("/CourseAttendance/InsertOrUpdate", {
         iIdCourse: idCurso,
         iIdUser: idUsuario,
@@ -91,9 +101,10 @@ const Admin: React.FC = (props: AdminProps) => {
         icon: 'success',
         title: 'Usuario agregado correctamente',
       })
-      
-      setStatus("")
-    } catch(error: any) {
+      // Regresar status a empty, se necesita cambiar forzosamente el status en la selección
+      // Comentado para mantener el status en su ultima selección por comodidad del admin
+      // setStatus("")
+    } catch (error: any) {
       Swal.fire({
         icon: 'error',
         title: 'Hubo un error al agregar un usuario',
@@ -137,7 +148,7 @@ const Admin: React.FC = (props: AdminProps) => {
           cursos={cursos}
           setidCurso={setidCurso}
         />
-        {/* Component to add or remove a user from the course */}
+        {/* Component to add a user to a course */}
         <UpdateUserCourse
           idUsuario={idUsuario}
           idCurso={idCurso}
