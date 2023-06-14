@@ -1,4 +1,5 @@
 import CoursesTable from "@/components/admin/CoursesTable";
+import ModalVerCursos from "@/components/admin/ModalVerCursos";
 import UpdateUserCourse from "@/components/admin/UpdateUserCourse";
 import UserCourseStatus from "@/components/admin/UserCourseStatus";
 import UserTable from "@/components/admin/UserTable";
@@ -22,6 +23,11 @@ const Admin: React.FC = (props: AdminProps) => {
   const [idCurso, setidCurso] = useState("")
   //Currently selected status (user-course)
   const [status, setStatus] = useState("")
+
+  const [modalVerCursos, setModalVerCursos] = useState(false)
+  const handleModalVerCursos = () => {
+    setModalVerCursos(!modalVerCursos)
+  }
 
   useEffect(() => {
     const cargarDatos = async () => {
@@ -79,27 +85,36 @@ const Admin: React.FC = (props: AdminProps) => {
     }
   }
 
+
   // Funcion para manejar la API y cambiar el status de un usuario en relación al curso
   // True (Completado) - False (No Completado)
   // Es necesario cambiar forzosamente el status para que no sea vacío
   const handleStatus = async () => {
     // Revisar status actual
-    console.log("Status: ", (status === "true"))
+    
     try {
       const config = axiosConfig();
       // No conection to axios, stop process
-      if (!confirm) return
+      if (!config) return
 
       // Cambiar el status del curso en relacion al usuario
-      await clienteAxios.post("/CourseAttendance/InsertOrUpdate", {
+      const {data} = await clienteAxios.post("/CourseAttendance/InsertOrUpdate", {
         iIdCourse: idCurso,
         iIdUser: idUsuario,
-        bAttendanceStatus: (status === "true"),
-      })
+        bAttendanceStatus: status === "true" ? true : false,
+      },config)
+
+      if(data[0].identity === 0){
+        Swal.fire({
+          icon: 'error',
+          title: 'Este usuario no pertenece a este curso',
+        })
+        return
+      }
 
       Swal.fire({
         icon: 'success',
-        title: 'Usuario agregado correctamente',
+        title: 'Status modificado correctamente',
       })
       // Regresar status a empty, se necesita cambiar forzosamente el status en la selección
       // Comentado para mantener el status en su ultima selección por comodidad del admin
@@ -142,6 +157,7 @@ const Admin: React.FC = (props: AdminProps) => {
         <UserTable
           usuarios={usuarios}
           setIdUsuario={setIdUsuario}
+          handleModalVerCursos={handleModalVerCursos}
 
         />
         <CoursesTable
@@ -162,6 +178,11 @@ const Admin: React.FC = (props: AdminProps) => {
           status={status}
           setStatus={setStatus}
           handleStatus={handleStatus}
+        />
+        <ModalVerCursos 
+          modalVerCursos={modalVerCursos}
+          handleModalVerCursos={handleModalVerCursos}
+          idUsuario={idUsuario}
         />
       </div>
     </div>

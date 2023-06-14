@@ -11,9 +11,10 @@ import Swal from "sweetalert2";
 interface UserProps {
   usuarios: Usuario[]
   setIdUsuario: (id: string) => void
+  handleModalVerCursos: () => void
 }
 
-const UserTable: React.FC<UserProps> = ({ usuarios, setIdUsuario }: UserProps) => {
+const UserTable: React.FC<UserProps> = ({ usuarios, setIdUsuario,handleModalVerCursos }: UserProps) => {
   const [cliente, setCliente] = useState(false);
 
   // Definir los datos que se mostrarán en la tabla
@@ -30,18 +31,26 @@ const UserTable: React.FC<UserProps> = ({ usuarios, setIdUsuario }: UserProps) =
     { name: "ID", selector: "id" },
     { name: "Nombre", selector: "nombre" },
     {
-      name: "Action",
+      name: "Accion",
       cell: (row: any) => (
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-3 gap-3">
           <button
-            className=" bg-gradient-to-r from-orange-100 to-yellow-100 text-yellow-600 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className=" fa-solid fa-person-chalkboard text-lg bg-gradient-to-r from-orange-100 to-yellow-100 text-yellow-600 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            // Se cambia el estado de idUsuario (Admin.tsx)
+            onClick={() => {
+              setIdUsuario(row.id)
+              handleModalVerCursos()
+            }}
+          >
+          </button>
+          <button
+            className=" fa-solid fa-arrow-pointer text-yellow-400 border-2 border-yellow-400 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             // Se cambia el estado de idUsuario (Admin.tsx)
             onClick={() => setIdUsuario(row.id)}
           >
-            Seleccionar
           </button>
           <button
-            className="fa-solid fa-trash text-yellow-400 border-2 border-yellow-400 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="fa-solid fa-trash text-yellow-400  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             onClick={() => handleButtonClick(row.id)}
           ></button>
         </div>
@@ -58,12 +67,12 @@ const UserTable: React.FC<UserProps> = ({ usuarios, setIdUsuario }: UserProps) =
       try {
         const config = axiosConfig();
         // No conection to axios, stop process
-        if (!confirm) return
+        if (!config) return
 
         // Need the add user API endpoint
         await clienteAxios.post("/User/Delete", {
           iIdUser: userId,
-        })
+        },config)
       } catch (error: any) {
         Swal.fire({
           icon: 'error',

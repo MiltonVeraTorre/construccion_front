@@ -45,3 +45,13 @@ interface Opcion{
     value: string;
     label: string;
 }
+
+interface CursoInt{
+    courseName: string,
+    attendanceStatus: string
+}
+interface CursoData{
+    iIdUser: number,
+    sEncuadreActual: string,
+    courses: CursoInt[]
+}
