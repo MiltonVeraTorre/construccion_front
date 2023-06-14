@@ -86,7 +86,6 @@ const UserCourseStatus: React.FC<UserCourseStatusProps> = ({ idUsuario, idCurso,
                             Modificar
                         </button>
                     </div>
-                    {status.length}
                 </div>
 
             </div>
