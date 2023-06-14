@@ -73,13 +73,14 @@ export default function VideoJuego() {
   }
 
   return (
-    // <MainLayout></MainLayout>
+    <MainLayout>
     <div className="w-full h-screen flex flex-col justify-center items-center">
       <div className="bg-[#242425] w-full h-[30px]">
         <h1 className="text-center text-gray-200">Contador de vidas: {numVidas}</h1>
       </div>
       <Unity unityProvider={unityProvider} className="w-full h-full" />
     </div>
+    </MainLayout>
   );
 }
 
