@@ -44,6 +44,8 @@ export default function index() {
           ]
         );
 
+        console.log(auth?.iIdUser)
+
         setNombre(userData[0].sName);
         setPuesto(userData[0].sBusinessUnit);
         setInicioEncuadre(userData[0].dFechaEncuadreActual);
@@ -51,11 +53,15 @@ export default function index() {
         setEncuadre(userData[0].sEncuadreActual);
         setDireccion(userData[0].sDivision);
 
+          console.log(interesesData)
+
         setIntereses(
           interesesData.map((interes: Interes) =>
             interes.iIdInterest.toString()
           )
         );
+
+
       } catch (error) {
         Swal.fire({
           icon: "error",

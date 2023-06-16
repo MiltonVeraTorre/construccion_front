@@ -55,3 +55,8 @@ interface CursoData{
     sEncuadreActual: string,
     courses: CursoInt[]
 }
+
+interface TopInt{
+    sUser: string
+    iMaxPuntaje: number
+}

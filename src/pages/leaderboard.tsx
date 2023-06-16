@@ -8,9 +8,11 @@ import MainLayout from '@/Layout/MainLayout';
 
 type Props = {}
 
+
+
 const Leaderboard = (props: Props) => {
 
-    const [topPlayers, setTopPlayers] = useState<any>('');
+    const [topPlayers, setTopPlayers] = useState<TopInt[] | null>(null);
 
     useEffect(() => {
         const cargarDatos = async () => {
@@ -18,9 +20,10 @@ const Leaderboard = (props: Props) => {
                 const config = axiosConfig();
                 if (!config) return;
 
-                const data = await clienteAxios.get("/Game/GetTopPlayers", config);
+                const {data}:{data:TopInt[]} = await clienteAxios.get("/Game/GetTopPlayers", config);
 
-                setTopPlayers(data.data);
+                console.log(data)
+                setTopPlayers(data);
 
             } catch (error) {
                 Swal.fire({
@@ -28,7 +31,6 @@ const Leaderboard = (props: Props) => {
                     title: 'Hubo un error al cargar los datos de los top players',
                 });
             }
-            console.log(topPlayers)
         };
 
         cargarDatos();
@@ -38,7 +40,10 @@ const Leaderboard = (props: Props) => {
 
     return (
         <MainLayout>
-            <div className='flex flex-col h-screen items-center bg-[#0e0f15] text-gray-200'>
+            {
+                topPlayers ?(
+
+            <div className='flex flex-col h-screen items-center text-gray-700'>
                 <div className='text-center text-3xl mt-[20px] mb-[40px] sm:mb-[100px]'>Top Players</div>
 
                 <div className='flex flex-col sm:flex-row justify-center items-center sm:items-start w-full'>
@@ -48,8 +53,8 @@ const Leaderboard = (props: Props) => {
                             <img className='w-full h-full rounded-lg shadow-none' src={`https://static.vecteezy.com/system/resources/previews/000/649/115/original/user-icon-symbol-sign-vector.jpg`} width={0} height={0} alt="Avatar" />
                         </div>
                         <div className='text-center mt-[10px]'>
-                            <p className='text-xl'>{topPlayers[1].sUser ?? "Username 2"}</p>
-                            <p className='text-xl mt-[10px]'>{topPlayers[1].iMaxPuntaje ?? "¨Puntaje"}</p>
+                            <p className='text-xl  capitalize text-gray-100'>{topPlayers[1].sUser ?? "Username 2"}</p>
+                            <p className=' mt-[10px] text-3xl font-bold  text-gray-100'>{topPlayers[1].iMaxPuntaje ?? "¨Puntaje"}</p>
                         </div>
                     </div>
 
@@ -58,8 +63,8 @@ const Leaderboard = (props: Props) => {
                             <img className='w-full h-full rounded-lg shadow-none' src={`https://static.vecteezy.com/system/resources/previews/000/649/115/original/user-icon-symbol-sign-vector.jpg`} width={0} height={0} alt="Avatar" />
                         </div>
                         <div className='text-center mt-[10px]'>
-                            <p className='text-xl'>{topPlayers[0].sUser ?? "Username 1"}</p>
-                            <p className='text-xl mt-[10px]'>{topPlayers[0].iMaxPuntaje ?? "Puntaje"}</p>
+                            <p className='text-xl capitalize  text-gray-100'>{topPlayers[0].sUser ?? "Username 1"}</p>
+                            <p className=' mt-[10px] text-3xl font-bold  text-gray-100'>{topPlayers[0].iMaxPuntaje ?? "Puntaje"}</p>
                         </div>
                     </div>
 
@@ -68,34 +73,40 @@ const Leaderboard = (props: Props) => {
                             <img className='w-full h-full rounded-lg shadow-none' src={`https://static.vecteezy.com/system/resources/previews/000/649/115/original/user-icon-symbol-sign-vector.jpg`} width={0} height={0} alt="Avatar" />
                         </div>
                         <div className='text-center mt-[10px]'>
-                            <p className='text-xl'>{topPlayers[2].sUser ?? "Username 3"}</p>
-                            <p className='text-xl mt-[10px]'>{topPlayers[2].iMaxPuntaje ?? "Puntaje"}</p>
+                            <p className='text-xl capitalize  text-gray-100'>{topPlayers[2].sUser ?? "Username 3"}</p>
+                            <p className='mt-[10px] text-3xl font-bold  text-gray-100'>{topPlayers[2].iMaxPuntaje ?? "Puntaje"}</p>
                         </div>
                     </div>
 
                 </div>
-                <div className='mt-[40px]'>
-                    <div className='sm-[]'>
+                <div className='mt-[40px] bg-gray-200 rounded-md'>
 
-                    </div>
-                    <ol className='bg-[#202123] rounded-lg'>
-                        <li className='sm:w-[600px] flex justify-around items-center mt-[10px]'>
-                            <i className="fa-solid fa-trophy h-[30px] ml-[10px] pt-[5px]"> 4</i>
-                            <p>{topPlayers[3].sUser ?? "Username 4"}</p>
-                            <p>{topPlayers[3].iMaxPuntaje ?? "Puntaje"}</p>
-                        </li>
-                        <br></br>
-                        <div className='h-[1px] bg-gray-800'></div>
-                        <br></br>
-                        <li className='sm:w-[600px] flex justify-around items-center'>
-                            <i className="fa-solid fa-trophy h-[30px] ml-[10px] pt-[5px]"> 5</i>
-                            <p>{topPlayers[4].sUser ?? "Username 5"}</p>
-                            <p>{topPlayers[4].iMaxPuntaje ?? "Puntaje"}</p>
-                        </li>
-                    </ol>
+                    
+                        <div className='grid grid-cols-3 place-items-center py-3 rounded-md'>
+                            <div className='flex items-center gap-3'>
+                                <p className='text-3xl font-bold'>4</p>
+                                <i className="fa-solid fa-trophy text-orange-400"></i>
+                            </div>
+                            <p className=' text-xl capitalize'>{topPlayers[3].sUser ?? "Username 4"}</p>
+                            <p className='text-3xl font-bold'>{topPlayers[3].iMaxPuntaje ?? "Puntaje"}</p>
+                        </div>
+
+                        <div className='grid grid-cols-3 place-items-center py-3 rounded-md'>
+                            <div className='flex items-center gap-3'>
+                                <p className='text-3xl font-bold'>5</p>
+                                <i className="fa-solid fa-trophy text-orange-400"></i>
+                            </div>
+                            <p className=' text-xl capitalize'>{topPlayers[4].sUser ?? "Username 5"}</p>
+                            <p className='text-3xl font-bold'>{topPlayers[4].iMaxPuntaje ?? "Puntaje"}</p>
+                        </div>
                 </div>
 
             </div>
+                ):(
+                    <p>Cargando</p>
+                )
+            }
+
         </MainLayout>
 
     )
