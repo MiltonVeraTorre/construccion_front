@@ -35,7 +35,7 @@ export default function VideoJuego() {
         if (!config) return
 
         const response = await clienteAxios.post("/User/GetData", { iIdUser: idUsuario }, config);
-        const { iVidas } = response.data;
+        const iVidas = response.data[0].iVidas;
 
         setNumVidas(iVidas)
 
