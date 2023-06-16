@@ -16,11 +16,7 @@ const Leaderboard = (props: Props) => {
                 const config = axiosConfig();
                 if (!config) return;
 
-                const [
-                    { data: topPlayersData }
-                ] = await Promise.all([
-                    clienteAxios.get("http://localhost:5155/Game/GetTopPlayers", config)
-                ]);
+                const { data: topPlayersData } = await clienteAxios.get("http://localhost:5155/Game/GetTopPlayers", config);
 
                 setTopPlayers(topPlayersData);
 
