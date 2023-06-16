@@ -58,6 +58,8 @@ export default function VideoJuego() {
 
   if (numVidas <= 0) {
     return (
+      <MainLayout>
+
         <div className="flex flex-col h-screen w-screen justify-center items-center bg-[#202123]">
           <div className="mb-[40px]">
             <h1 className="text-gray-200 text-2xl text-center">No tienes suficientes vidas para poder utilizar el juego,</h1>
@@ -67,16 +69,19 @@ export default function VideoJuego() {
             <i className="fa-solid fa-heart-circle-xmark fa-10x" style={{ "color": "red" }}></i>
           </div>
         </div>
+      </MainLayout>
     )
   }
 
   return (
+    <MainLayout>
       <div className="w-full h-screen flex flex-col justify-center items-center">
         {/* <div className="bg-[#242425] w-full h-[30px]">
           <h1 className="text-center text-gray-200">Contador de vidas: {numVidas}</h1>
         </div> */}
         <Unity unityProvider={unityProvider} className="w-full h-full" />
       </div>
+    </MainLayout>
   );
 }
 
