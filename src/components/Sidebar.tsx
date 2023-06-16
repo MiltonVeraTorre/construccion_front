@@ -94,6 +94,21 @@ export default function Sidebar({sidebar, setSidebar}:any) {
                 </span>
               </Link>
             </li>
+
+            <li>
+              <Link
+                href="/leaderboard"
+                className="relative flex ml-5 items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
+                onClick={() => setSidebar(false)}
+              >
+                <span className="flex justify-center items-center">
+                <i className="fa-solid fa-trophy text-orange-400 text-2xl"></i>
+                </span>
+                <span className="ml-2 text-2xl tracking-wide truncate">
+                  Leaderboard
+                </span>
+              </Link>
+            </li>
             
            
             
