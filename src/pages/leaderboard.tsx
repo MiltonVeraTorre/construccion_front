@@ -3,6 +3,7 @@ import { axiosConfig } from "@/config/axiosConfig";
 import clienteAxios from "@/config/clienteAxios";
 import axios from 'axios';
 import Swal from "sweetalert2";
+import { data } from 'autoprefixer';
 
 type Props = {}
 
@@ -16,9 +17,9 @@ const Leaderboard = (props: Props) => {
                 const config = axiosConfig();
                 if (!config) return;
 
-                const { data: topPlayersData } = await clienteAxios.get("http://localhost:5155/Game/GetTopPlayers", config);
+                const data = await clienteAxios.get("/Game/GetTopPlayers", config);
 
-                setTopPlayers(topPlayersData);
+                setTopPlayers(data.data);
 
             } catch (error) {
                 Swal.fire({
@@ -45,8 +46,8 @@ const Leaderboard = (props: Props) => {
                         <img className='w-full h-full rounded-lg shadow-none' src={`https://static.vecteezy.com/system/resources/previews/000/649/115/original/user-icon-symbol-sign-vector.jpg`} width={0} height={0} alt="Avatar" />
                     </div>
                     <div className='text-center mt-[10px]'>
-                        <p className='text-xl'>Username 1</p>
-                        <p className='text-xl mt-[10px]'>Score</p>
+                        <p className='text-xl'>{data.data[1].sUser ?? "Username 2"}</p>
+                        <p className='text-xl mt-[10px]'>{data.data[1].iMaxPuntaje ?? "¨Puntaje"}</p>
                     </div>
                 </div>
 
@@ -55,8 +56,8 @@ const Leaderboard = (props: Props) => {
                         <img className='w-full h-full rounded-lg shadow-none' src={`https://static.vecteezy.com/system/resources/previews/000/649/115/original/user-icon-symbol-sign-vector.jpg`} width={0} height={0} alt="Avatar" />
                     </div>
                     <div className='text-center mt-[10px]'>
-                        <p className='text-xl'>Username 2</p>
-                        <p className='text-xl mt-[10px]'>Score</p>
+                        <p className='text-xl'>{data.data[0].sUser ?? "Username 1"}</p>
+                        <p className='text-xl mt-[10px]'>{data.data[0].iMaxPuntaje ?? "Puntaje"}</p>
                     </div>
                 </div>
 
@@ -65,8 +66,8 @@ const Leaderboard = (props: Props) => {
                         <img className='w-full h-full rounded-lg shadow-none' src={`https://static.vecteezy.com/system/resources/previews/000/649/115/original/user-icon-symbol-sign-vector.jpg`} width={0} height={0} alt="Avatar" />
                     </div>
                     <div className='text-center mt-[10px]'>
-                        <p className='text-xl'>Username 3</p>
-                        <p className='text-xl mt-[10px]'>Score</p>
+                        <p className='text-xl'>{data.data[2].sUser ?? "Username 3"}</p>
+                        <p className='text-xl mt-[10px]'>{data.data[2].iMaxPuntaje ?? "Puntaje"}</p>
                     </div>
                 </div>
 
@@ -76,18 +77,18 @@ const Leaderboard = (props: Props) => {
 
                 </div>
                 <ol className='bg-[#202123] rounded-lg'>
-                    <li className='sm:w-[600px] flex justify-around items-center'>
+                    <li className='sm:w-[600px] flex justify-around items-center mt-[10px]'>
                         <i className="fa-solid fa-trophy h-[30px] ml-[10px] pt-[5px]"> 4</i>
-                        <p>Username4</p>
-                        <p>Score</p>
+                        <p>{data.data[3].sUser ?? "Username 4"}</p>
+                        <p>{data.data[3].iMaxPuntaje ?? "Puntaje"}</p>
                     </li>
                     <br></br>
                     <div className='h-[1px] bg-gray-800'></div>
                     <br></br>
                     <li className='sm:w-[600px] flex justify-around items-center'>
                         <i className="fa-solid fa-trophy h-[30px] ml-[10px] pt-[5px]"> 5</i>
-                        <p>Username5</p>
-                        <p>Score</p>
+                        <p>{data.data[4].sUser ?? "Username 5"}</p>
+                        <p>{data.data[4].iMaxPuntaje ?? "Puntaje"}</p>
                     </li>
                 </ol>
             </div>
