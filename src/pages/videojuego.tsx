@@ -56,7 +56,7 @@ export default function VideoJuego() {
     codeUrl: "assets/build.wasm",
   });
 
-  if (false) {
+  if (numVidas <= 0) {
     return (
         <div className="flex flex-col h-screen w-screen justify-center items-center bg-[#202123]">
           <div className="mb-[40px]">
