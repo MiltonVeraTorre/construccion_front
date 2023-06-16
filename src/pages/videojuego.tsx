@@ -51,14 +51,13 @@ export default function VideoJuego() {
 
   const { unityProvider } = useUnityContext({
     loaderUrl: "assets/Tetris.loader.js",
-    dataUrl: "assets/Tetris.data",
-    frameworkUrl: "assets/Tetris.framework.js",
-    codeUrl: "assets/Tetris.wasm",
+    dataUrl: "assets/webgl.data",
+    frameworkUrl: "assets/build.framework.js",
+    codeUrl: "assets/build.wasm",
   });
 
-  if (numVidas <= 0) {
+  if (false) {
     return (
-      <MainLayout>
         <div className="flex flex-col h-screen w-screen justify-center items-center bg-[#202123]">
           <div className="mb-[40px]">
             <h1 className="text-gray-200 text-2xl text-center">No tienes suficientes vidas para poder utilizar el juego,</h1>
@@ -68,19 +67,16 @@ export default function VideoJuego() {
             <i className="fa-solid fa-heart-circle-xmark fa-10x" style={{ "color": "red" }}></i>
           </div>
         </div>
-      </MainLayout>
     )
   }
 
   return (
-    <MainLayout>
       <div className="w-full h-screen flex flex-col justify-center items-center">
-        <div className="bg-[#242425] w-full h-[30px]">
+        {/* <div className="bg-[#242425] w-full h-[30px]">
           <h1 className="text-center text-gray-200">Contador de vidas: {numVidas}</h1>
-        </div>
+        </div> */}
         <Unity unityProvider={unityProvider} className="w-full h-full" />
       </div>
-    </MainLayout>
   );
 }
 
